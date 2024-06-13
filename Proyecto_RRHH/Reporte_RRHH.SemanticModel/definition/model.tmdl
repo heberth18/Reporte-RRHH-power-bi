@@ -1,0 +1,23 @@
+model Model
+	culture: es-VE
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-VE
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Tabla_dataset_RRHH"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.130.754.0 (24.06)
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table Tabla_dataset_RRHH
+ref table DateTableTemplate_b58fd54a-0865-4333-9caa-bf87f0b42ed8
+ref table LocalDateTable_073bc18b-4196-4c24-88bd-e9e76db2b2d0
+ref table LocalDateTable_6d43b191-26f3-44aa-9667-cc073f998608
+
+ref cultureInfo es-VE
+

@@ -1,0 +1,138 @@
+table Tabla_dataset_RRHH
+	lineageTag: 584584b4-ccd9-46df-8f70-10f1e9232d36
+
+	measure 'Total Empleados' = COUNTROWS(Tabla_dataset_RRHH)
+		formatString: 0
+		lineageTag: b9c1f295-0e5f-4745-91c5-60409951dbcc
+
+	measure 'Empleados Activos' =
+			CALCULATE([Total Empleados],
+			Tabla_dataset_RRHH[Estatus]="Activo")
+		formatString: 0
+		lineageTag: 415458fa-ae46-4548-b0d3-02825a41229f
+
+	measure 'Empleados Inactivos' =
+			CALCULATE([Total Empleados],
+			Tabla_dataset_RRHH[Estatus]="Inactivo")
+		formatString: 0
+		lineageTag: ea0caa32-de60-4804-9d5e-67739fa440bf
+
+	column 'ID Empleado'
+		dataType: string
+		lineageTag: 96770e96-7a6f-4c87-950d-2730878ed63f
+		summarizeBy: none
+		sourceColumn: ID Empleado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Función
+		dataType: string
+		lineageTag: 76880eb9-ccaa-44e5-9394-95dad125cb5d
+		summarizeBy: none
+		sourceColumn: Función
+
+		annotation SummarizationSetBy = Automatic
+
+	column Departamento
+		dataType: string
+		lineageTag: 8e9d4520-683a-461e-a23a-e1d12f1b35bc
+		summarizeBy: none
+		sourceColumn: Departamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Región
+		dataType: string
+		lineageTag: c1d6c64e-cdc5-4b7b-9a05-0d280ae3ae8f
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Región
+
+		annotation SummarizationSetBy = Automatic
+
+	column Educación
+		dataType: string
+		lineageTag: e2088bdf-2cfc-4671-8933-b4d7e45031e9
+		summarizeBy: none
+		sourceColumn: Educación
+
+		annotation SummarizationSetBy = Automatic
+
+	column Género
+		dataType: string
+		lineageTag: 21405f7d-1662-44bd-b164-8e291d0b5fc5
+		summarizeBy: none
+		sourceColumn: Género
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jornada
+		dataType: string
+		lineageTag: 5c1d9ae4-b8b9-4735-81bb-3e5f04d111a6
+		summarizeBy: none
+		sourceColumn: Jornada
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modalidad
+		dataType: string
+		lineageTag: 32f1eeb7-f2ae-46e4-90ef-9cfc43bf0835
+		summarizeBy: none
+		sourceColumn: Modalidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha Contratación'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6275547d-0775-42e0-aab4-e10171a8a692
+		summarizeBy: none
+		sourceColumn: Fecha Contratación
+
+		variation Variación
+			isDefault
+			relationship: 5d0641ac-6615-402a-8a76-c37ab31e5adb
+			defaultHierarchy: LocalDateTable_073bc18b-4196-4c24-88bd-e9e76db2b2d0.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Estatus
+		dataType: string
+		lineageTag: 7ab37003-e592-4f9f-bce1-1cd3741b871b
+		summarizeBy: none
+		sourceColumn: Estatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha Baja'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d0e9158c-903d-46d4-9274-6b19a34e86a5
+		summarizeBy: none
+		sourceColumn: Fecha Baja
+
+		variation Variación
+			isDefault
+			relationship: 595393ce-3c3e-435b-9975-35927b44bf5d
+			defaultHierarchy: LocalDateTable_6d43b191-26f3-44aa-9667-cc073f998608.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Tabla_dataset_RRHH = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Users\Heberth\Desktop\Power_BI\Proeyctos de Power BI\Proyecto RRHH\dataset_RRHH.xlsx"), null, true),
+				    Tabla1_Table = Origen{[Item="Tabla1",Kind="Table"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Tabla1_Table,{{"ID Empleado", type text}, {"Función", type text}, {"Departamento", type text}, {"Región", type text}, {"Educación", type text}, {"Género", type text}, {"Jornada", type text}, {"Modalidad", type text}, {"Fecha Contratación", type date}, {"Estatus", type text}, {"Fecha Baja", type date}})
+				in
+				    #"Tipo cambiado"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

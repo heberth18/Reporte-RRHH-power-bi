@@ -1,0 +1,10 @@
+relationship 5d0641ac-6615-402a-8a76-c37ab31e5adb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tabla_dataset_RRHH.'Fecha Contratación'
+	toColumn: LocalDateTable_073bc18b-4196-4c24-88bd-e9e76db2b2d0.Date
+
+relationship 595393ce-3c3e-435b-9975-35927b44bf5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tabla_dataset_RRHH.'Fecha Baja'
+	toColumn: LocalDateTable_6d43b191-26f3-44aa-9667-cc073f998608.Date
+

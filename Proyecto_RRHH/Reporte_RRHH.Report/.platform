@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Reporte_RRHH"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3ed65062-7b30-4ab1-b4c9-67c79f1a9e30"
+  }
+}
